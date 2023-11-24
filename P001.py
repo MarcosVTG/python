@@ -93,3 +93,22 @@ caractere_especial1 = 'ç'
 caractere_especial2 = 'ã'
 print(f"\n'{caractere_especial1}' - {ord(caractere_especial1)} - Octal: {oct(ord(caractere_especial1))} - Hexadecimal: {hex(ord(caractere_especial1))}")
 print(f"'{caractere_especial2}' - {ord(caractere_especial2)} - Octal: {oct(ord(caractere_especial2))} - Hexadecimal: {hex(ord(caractere_especial2))}")
+
+#exercicio 04 - tópicos de 1 a 5
+nome = "Seu Nome Completo"
+nome_sobrenome = nome.split()
+primeiro_nome, sobrenome = nome_sobrenome[0], nome_sobrenome[-1]
+
+if primeiro_nome < sobrenome:
+    print(f"{primeiro_nome} antecede {sobrenome} na ordem alfabética.")
+else:
+    print(f"{sobrenome} antecede {primeiro_nome} na ordem alfabética.")
+
+print(f"Quantidade de caracteres em {primeiro_nome}: {len(primeiro_nome)}")
+print(f"Quantidade de caracteres em {sobrenome}: {len(sobrenome)}")
+
+nome_invertido = nome[::-1]
+if nome.replace(" ", "") == nome_invertido.replace(" ", ""):
+    print("Seu nome é um palíndromo.")
+else:
+    print("Seu nome não é um palíndromo.")
