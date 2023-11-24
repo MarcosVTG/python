@@ -35,3 +35,26 @@ lista_tarefas.adicionar_tarefa("Fechar as janelas")
 lista_tarefas.marcar_tarefa_como_finalizada(2)
 
 lista_tarefas.mostrar_tarefas()
+class ListaDeTarefas:
+    def __init__(self):
+        self.tarefas = []
+        self.id_counter = 1
+
+    def adicionar_tarefa(self, descricao):
+        if not descricao or not descricao[0].isupper():
+            print("Descrição inválida. A descrição deve começar com maiúscula.")
+            return
+
+        nova_tarefa = Tarefa(descricao)
+        self.tarefas.append((self.id_counter, nova_tarefa))
+        self.id_counter += 1
+
+        print("Tarefa registrada!!!")
+
+# Exemplo de uso
+lista_tarefas = ListaDeTarefas()
+descricao_tarefa = input("Digite a descrição da tarefa: ")
+lista_tarefas.adicionar_tarefa(descricao_tarefa)
+
+# Mostrar a lista de tarefas
+lista_tarefas.mostrar_tarefas()
