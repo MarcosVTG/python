@@ -79,3 +79,17 @@ print(f'Representação hexadecimal: {hex_num}')
 
 oct_num = oct(num)
 print(f'Representação octal: {oct_num}')
+
+#exercicio 03 - tópicos de 1 a 4 
+print("Imprimindo caracteres e seus códigos numéricos:")
+for i in range(10):
+    char = chr(ord('0') + i)
+    print(f"'{char}' - {ord(char)} - Octal: {oct(ord(char))} - Hexadecimal: {hex(ord(char))}")
+
+caractere = input("\nDigite um caractere: ")
+print(f"\n'{caractere}' - {ord(caractere)} - Octal: {oct(ord(caractere))} - Hexadecimal: {hex(ord(caractere))}")
+
+caractere_especial1 = 'ç'
+caractere_especial2 = 'ã'
+print(f"\n'{caractere_especial1}' - {ord(caractere_especial1)} - Octal: {oct(ord(caractere_especial1))} - Hexadecimal: {hex(ord(caractere_especial1))}")
+print(f"'{caractere_especial2}' - {ord(caractere_especial2)} - Octal: {oct(ord(caractere_especial2))} - Hexadecimal: {hex(ord(caractere_especial2))}")
