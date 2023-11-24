@@ -105,3 +105,28 @@ tarefa_a_realizar = int(input("Digite o ID da tarefa a ser realizada: "))
 lista_tarefas.realizar_tarefa(tarefa_a_realizar)
 
 lista_tarefas.mostrar_tarefas()
+
+class ListaDeTarefas:
+
+    def editar_tarefa(self, tarefa_id, nova_descricao):
+        for id_tarefa, tarefa in self.tarefas:
+            if tarefa_id == id_tarefa:
+                tarefa.descricao = nova_descricao
+                print("Tarefa editada com sucesso!!!")
+                return
+
+        print("Tarefa não encontrada.")
+
+# Exemplo de uso
+lista_tarefas = ListaDeTarefas()
+lista_tarefas.adicionar_tarefa("Preparar a marmita")
+lista_tarefas.adicionar_tarefa("Arrumar a mochila")
+lista_tarefas.adicionar_tarefa("Fechar as janelas")
+
+lista_tarefas.mostrar_tarefas()
+
+tarefa_a_editar = int(input("Digite o ID da tarefa a ser editada: "))
+nova_descricao = input("Digite a nova descrição da tarefa: ")
+lista_tarefas.editar_tarefa(tarefa_a_editar, nova_descricao)
+
+lista_tarefas.mostrar_tarefas()
