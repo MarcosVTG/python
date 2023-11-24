@@ -22,27 +22,27 @@ class ListaDeTarefas:
         print("Tarefa registrada!!!")
 
     def marcar_tarefa_como_realizada(self, tarefa_id):
-        for i, (id_tarefa, tarefa) in enumerate(self.tarefas):
-            if tarefa_id == id_tarefa and not tarefa.finalizada:
-                self.tarefas.insert(0, self.tarefas.pop(i))
-                tarefa.finalizada = True
-                print("Tarefa realizada!!!")
-                return
-        print("Tarefa não encontrada ou já realizada.")
+        def marca_tarefa(tarefa):
+            return Tarefa(tarefa.descricao, finalizada=True) if tarefa_id == tarefa.id and not tarefa.finalizada else tarefa
+
+        self.tarefas = [(id_tarefa, marca_tarefa(tarefa)) for id_tarefa, tarefa in self.tarefas[::-1]]
+        print("Tarefa realizada!!!" if any(tarefa_id == id_tarefa and tarefa.finalizada for id_tarefa, tarefa in self.tarefas) else "Tarefa não encontrada ou já realizada.")
 
     def editar_tarefa(self, tarefa_id, nova_descricao):
-        for id_tarefa, tarefa in self.tarefas:
-            if tarefa_id == id_tarefa:
-                tarefa.descricao = nova_descricao
-                print("Tarefa editada com sucesso!!!")
-                return
-        print("Tarefa não encontrada.")
+        def edita_tarefa(tarefa):
+            return Tarefa(nova_descricao, finalizada=tarefa.finalizada) if tarefa_id == tarefa.id else tarefa
+
+        self.tarefas = [(id_tarefa, edita_tarefa(tarefa)) for id_tarefa, tarefa in self.tarefas]
+        print("Tarefa editada com sucesso!!!" if any(tarefa_id == id_tarefa for id_tarefa, tarefa in self.tarefas) else "Tarefa não encontrada.")
 
     def mostrar_tarefas(self):
+        def formatar_tarefa(id_tarefa, tarefa):
+            box = "[x]" if tarefa.finalizada else "[ ]"
+            return f"{id_tarefa}. {tarefa.descricao} {box}"
+
         print("Lista de Tarefas:")
         for id_tarefa, tarefa in self.tarefas:
-            box = "[x]" if tarefa.finalizada else "[ ]"
-            print(f"{id_tarefa}. {tarefa.descricao} {box}")
+            print(formatar_tarefa(id_tarefa, tarefa))
 
 # Exemplo de uso
 lista_tarefas = ListaDeTarefas()
@@ -62,4 +62,3 @@ nova_descricao = input("Digite a nova descrição da tarefa: ")
 lista_tarefas.editar_tarefa(tarefa_a_editar, nova_descricao)
 
 lista_tarefas.mostrar_tarefas()
-
