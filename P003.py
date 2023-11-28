@@ -18,7 +18,9 @@ class Supermercado:
             print("Erro: O nome do produto deve começar com uma letra maiúscula.")
             return
 
-        if not isinstance(preco, float):
+        try:
+            preco = float(preco)
+        except ValueError:
             print("Erro: Preço inválido. Deve ser um número decimal.")
             return
 
@@ -69,11 +71,8 @@ def main():
         if opcao == '1':
             codigo = input("Digite o código do produto: ")
             nome = input("Digite o nome do produto: ")
-            try:
-                preco = float(input("Digite o preço do produto: "))
-                supermercado.inserir_produto(codigo, nome, preco)
-            except ValueError:
-                print("Erro: Preço inválido. Deve ser um número decimal.")
+            preco = input("Digite o preço do produto: ")
+            supermercado.inserir_produto(codigo, nome, preco)
         elif opcao == '2':
             codigo = input("Digite o código do produto a ser excluído: ")
             supermercado.excluir_produto(codigo)
